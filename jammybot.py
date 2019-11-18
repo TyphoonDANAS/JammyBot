@@ -95,7 +95,7 @@ async def on_message(message):
         await client.send_message(message.channel, embed=discord.Embed(title = mtl, description = msg, colour = 0x2EFEF7))
 
     if message.content.startswith('!시간'):
-        if(message.content == "!시간 1")
+        if(message.content == "!시간 1"):
             now = datetime.now()
             hr = "``" + str(now.hour) + "`` : "
             mi = "``" + str(now.minute) + "`` : "
