@@ -2,7 +2,7 @@
 import discord
 from os import system
 import random
-from datetime import datetime
+import datetime
 import os
 
 system("title "+"행복봇")
@@ -93,24 +93,6 @@ async def on_message(message):
 
         msg = msg.format(message)
         await client.send_message(message.channel, embed=discord.Embed(title = mtl, description = msg, colour = 0x2EFEF7))
-   # if message.content.startswith('!시간 모드 '):
-   #    text = message.content
-   #    if(text == "!시간 모드 1"):
-   #        f = open("C:/Users/user/Desktop/Discord_Bot/Mode/mode.txt", "w")
-   #         f.write("모드번호1")
-    #        f.close()
-    #        await client.send_message(message.channel, "모드 ``1``로 설정되었습니다.")
-   #         return
-   #     elif(text == "!시간 모드 2"):
-    #        f = open("C:/Users/user/Desktop/Discord_Bot/Mode/mode.txt", "w")
-     #       f.write("모드번호2")
-     #       f.close()
-    #        await client.send_message(message.channel, "모드 ``2``로 설정되었습니다.")
-     #       return
-     #   else:
-     #       await client.send_message(message.channel, "올바른 값을 입력해주세요.")
-      #      return
-
 
     if message.content.startswith('!시간'):
         if(message.content == "!시간 1")
