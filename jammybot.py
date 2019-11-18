@@ -23,12 +23,12 @@ async def on_message(message):
         await client.send_message(message.channel, msg)
     
     if message.content.startswith('!버전'):
-        msg = '재미봇 버전: 1.0.2a'.format(message)
+        msg = '재미봇 버전: 1.0.2b'.format(message)
         await client.send_message(message.channel, embed=discord.Embed(title = msg,colour = 0x2EFEF7))
         
     if message.content.startswith('!명령어'):
         mtl = "재미봇 명령어"
-        msg = '!버전: 재미봇의 버전을 확인합니다.\n!상태 <내용>: 재미봇의 상태를 변경합니다.\n!가위, !바위, !보: 재미봇과 가위바위보를 합니다.\n!시간: 현재 시간을 확인합니다.\n!시간 모드 1, 2: !시간 명령어의 표시 방법을 설정합니다.'
+        msg = '!버전: 재미봇의 버전을 확인합니다.\n!상태 <내용>: 재미봇의 상태를 변경합니다.\n!가위, !바위, !보: 재미봇과 가위바위보를 합니다.\n!시간 1, !시간 2: 현재 시간을 확인합니다.'
         await client.send_message(message.channel, embed=discord.Embed(title = mtl, description = msg, colour = 0x2EFEF7))
 
     if message.content.startswith('!상태'):
@@ -93,31 +93,27 @@ async def on_message(message):
 
         msg = msg.format(message)
         await client.send_message(message.channel, embed=discord.Embed(title = mtl, description = msg, colour = 0x2EFEF7))
-
-
-    if message.content.startswith('!시간 모드 '):
-        text = message.content
-        if(text == "!시간 모드 1"):
-            f = open("C:/Users/user/Desktop/Discord_Bot/Mode/mode.txt", "w")
-            f.write("모드번호1")
-            f.close()
-            await client.send_message(message.channel, "모드 ``1``로 설정되었습니다.")
-            return
-        elif(text == "!시간 모드 2"):
-            f = open("C:/Users/user/Desktop/Discord_Bot/Mode/mode.txt", "w")
-            f.write("모드번호2")
-            f.close()
-            await client.send_message(message.channel, "모드 ``2``로 설정되었습니다.")
-            return
-        else:
-            await client.send_message(message.channel, "올바른 값을 입력해주세요.")
-            return
+   # if message.content.startswith('!시간 모드 '):
+   #    text = message.content
+   #    if(text == "!시간 모드 1"):
+   #        f = open("C:/Users/user/Desktop/Discord_Bot/Mode/mode.txt", "w")
+   #         f.write("모드번호1")
+    #        f.close()
+    #        await client.send_message(message.channel, "모드 ``1``로 설정되었습니다.")
+   #         return
+   #     elif(text == "!시간 모드 2"):
+    #        f = open("C:/Users/user/Desktop/Discord_Bot/Mode/mode.txt", "w")
+     #       f.write("모드번호2")
+     #       f.close()
+    #        await client.send_message(message.channel, "모드 ``2``로 설정되었습니다.")
+     #       return
+     #   else:
+     #       await client.send_message(message.channel, "올바른 값을 입력해주세요.")
+      #      return
 
 
     if message.content.startswith('!시간'):
-        f = open("C:/Users/user/Desktop/Discord_Bot/Mode/mode.txt", 'r')
-        mode = f.read()
-        if(mode == "모드번호1"):
+        if(message.content == "!시간 1")
             now = datetime.now()
             hr = "``" + str(now.hour) + "`` : "
             mi = "``" + str(now.minute) + "`` : "
@@ -131,7 +127,7 @@ async def on_message(message):
             await client.send_message(message.channel, oj + hr + mi+ sc)
 
 
-        if(mode == "모드번호2"):
+        if(message.content == "!시간 2"):
             now = datetime.now()
             hr = str(now.hour) + "시 "
             mi = str(now.minute) + "분 "
@@ -144,9 +140,6 @@ async def on_message(message):
                 oj = "오전 "
             mtl = "현재 시간은 " + oj + hr + mi + sc + " 입니다."
             await client.send_message(message.channel, embed=discord.Embed(title = mtl, colour = 0x2EFEF7))
-
-
-        f.close()
 
 
 @client.event
