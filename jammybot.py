@@ -11,24 +11,48 @@ TOKEN = os.environ["BOT_TOKEN"]
 
 client = discord.Client()
 
+
+@client.event
+async def on_member_join(member):
+    role = ''
+    for i in member.server.roles:
+        if i.name == "유저":
+            role = i
+            break
+    await client.add_roles(member, role)
+
+
 @client.event
 async def on_message(message):
+    member = message.author
     # we do not want the bot to reply to itself
     if message.author == client.user:
         return
+    if(message.content == "!역할 행복이"):
+        for i in member.server.roles:
+            if i.name == "행복이":
+                role = i
+                break
+        await client.add_roles(member, role)
 
+    if(message.content == "!역할 재미끄투"):
+        for i in member.server.roles:
+            if i.name == "재미끄투":
+                role = i
+                break
+        await client.add_roles(member, role)
 
     if message.content.startswith('!재미봇'):
         msg = '안녕하세요, {0.author.mention} 님'.format(message)
         await client.send_message(message.channel, msg)
     
     if message.content.startswith('!버전'):
-        msg = '재미봇 버전: 1.0.2b'.format(message)
+        msg = '재미봇 버전: 1.0.3a'.format(message)
         await client.send_message(message.channel, embed=discord.Embed(title = msg,colour = 0x2EFEF7))
         
     if message.content.startswith('!명령어'):
         mtl = "재미봇 명령어"
-        msg = '!버전: 재미봇의 버전을 확인합니다.\n!상태 <내용>: 재미봇의 상태를 변경합니다.\n!가위, !바위, !보: 재미봇과 가위바위보를 합니다.\n!시간 1, !시간 2: 현재 시간을 확인합니다.'
+        msg = '!버전: 재미봇의 버전을 확인합니다.\n!상태 <내용>: 재미봇의 상태를 변경합니다.\n!가위, !바위, !보: 재미봇과 가위바위보를 합니다.'
         await client.send_message(message.channel, embed=discord.Embed(title = mtl, description = msg, colour = 0x2EFEF7))
 
     if message.content.startswith('!상태'):
