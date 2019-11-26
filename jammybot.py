@@ -5,7 +5,7 @@ import random
 import datetime
 import os
 
-system("title "+"행복봇")
+system("title "+"재미봇")
 
 TOKEN = os.environ["BOT_TOKEN"]
 
@@ -28,6 +28,20 @@ async def on_message(message):
     # we do not want the bot to reply to itself
     if message.author == client.user:
         return
+
+    if message.content.startswith('!확률 '):
+        text = message.content
+        text = text.replace("!확률 ", "", 1)
+        nsu = random.randrange(1,101)
+        asu = str(nsu)
+        mtl = "** ``" + text + "**`` 은 (는)"
+        msg = "``" + asu + "%``입니다."
+        mtl = mtl.format(message)
+        msg = msg.format(message)
+        await client.send_message(message.channel, embed=discord.Embed(title = mtl, description = msg, colour = 0x2EFEF7))
+        return
+
+
     if(message.content == "!역할 행복이"):
         for i in member.server.roles:
             if i.name == "행복이":
@@ -47,12 +61,12 @@ async def on_message(message):
         await client.send_message(message.channel, msg)
     
     if message.content.startswith('!버전'):
-        msg = '재미봇 버전: 1.0.3a'.format(message)
+        msg = '재미봇 버전: 1.0.4'.format(message)
         await client.send_message(message.channel, embed=discord.Embed(title = msg,colour = 0x2EFEF7))
         
     if message.content.startswith('!명령어'):
         mtl = "재미봇 명령어"
-        msg = '!버전: 재미봇의 버전을 확인합니다.\n!상태 <내용>: 재미봇의 상태를 변경합니다.\n!가위, !바위, !보: 재미봇과 가위바위보를 합니다.'
+        msg = '!버전: 재미봇의 버전을 확인합니다.\n!상태 <내용>: 재미봇의 상태를 변경합니다.\n!가위, !바위, !보: 재미봇과 가위바위보를 합니다.\n!확률 <내용>: 백분율로 확률을 구합니다.'
         await client.send_message(message.channel, embed=discord.Embed(title = mtl, description = msg, colour = 0x2EFEF7))
 
     if message.content.startswith('!상태'):
