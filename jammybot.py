@@ -41,6 +41,11 @@ async def on_message(message):
         await client.send_message(message.channel, embed=discord.Embed(title = mtl, description = msg, colour = 0x2EFEF7))
         return
 
+    if message.content.startswith('!따라해 '):
+        text = message.content
+        text = text.replace("!따라해 ", "",1)
+        msg = text.format(message)
+        await client.send_message(message.channel, msg)
 
     if(message.content == "!역할 행복이"):
         for i in member.server.roles:
@@ -68,7 +73,7 @@ async def on_message(message):
         
     if message.content.startswith('!명령어'):
         mtl = "재미봇 명령어"
-        msg = '!버전: 재미봇의 버전을 확인합니다.\n!상태 <내용>: 재미봇의 상태를 변경합니다.\n!가위, !바위, !보: 재미봇과 가위바위보를 합니다.\n!확률 <내용>: 백분율로 확률을 구합니다.'
+        msg = '**!버전**: 재미봇의 버전을 확인합니다.\n**!상태 <내용>**: 재미봇의 상태를 변경합니다.\n**!가위, !바위, !보**: 재미봇과 가위바위보를 합니다.\n**!확률 <내용>**: 백분율로 확률을 구합니다.\n**!따라해 <내용>** 말을 따라합니다.'
         await client.send_message(message.channel, embed=discord.Embed(title = mtl, description = msg, colour = 0x2EFEF7))
 
     if message.content.startswith('!상태'):
