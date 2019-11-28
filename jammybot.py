@@ -32,7 +32,7 @@ async def on_message(message):
     if message.content.startswith('!확률 '):
         text = message.content
         text = text.replace("!확률 ", "", 1)
-        nsu = random.randrange(1,101)
+        nsu = random.randrange(0,101)
         asu = str(nsu)
         mtl = "``" + text + "`` 은 (는)"
         msg = "``" + asu + "%``입니다."
@@ -61,7 +61,9 @@ async def on_message(message):
         await client.send_message(message.channel, msg)
     
     if message.content.startswith('!버전'):
-        msg = '재미봇 버전: 1.0.4b'.format(message)
+        version = os.environ["VERSION"]
+        msg = '재미봇 버전: ' + version
+        msg = msg.format(message)
         await client.send_message(message.channel, embed=discord.Embed(title = msg,colour = 0x2EFEF7))
         
     if message.content.startswith('!명령어'):
