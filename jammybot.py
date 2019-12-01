@@ -121,7 +121,7 @@ async def on_message(message):
         msg = msg.format(message)
         await client.send_message(message.channel, embed=discord.Embed(title = mtl, description = msg, colour = 0x2EFEF7))
 
-    if(message.content == "!보" || message.content == "!보자기"):
+    if(message.content == "!보" or message.content == "!보자기"):
         nsu = random.randrange(1,4)
         mtl = "가위바위보 결과"
         if(nsu == 1):
