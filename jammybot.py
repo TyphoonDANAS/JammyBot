@@ -28,7 +28,7 @@ async def on_message(message):
     # we do not want the bot to reply to itself
     if message.author == client.user:
         return
-
+    
     if message.content.startswith('!확률 '):
         text = message.content
         text = text.replace("!확률 ", "", 1)
@@ -76,7 +76,7 @@ async def on_message(message):
         msg = '**!버전**: 재미봇의 버전을 확인합니다.\n**!상태 <내용>**: 재미봇의 상태를 변경합니다.\n**!가위, !바위, !보**: 재미봇과 가위바위보를 합니다.\n**!확률 <내용>**: 백분율로 확률을 구합니다.\n**!따라해 <내용>** 말을 따라합니다.'
         await client.send_message(message.channel, embed=discord.Embed(title = mtl, description = msg, colour = 0x2EFEF7))
 
-    if message.content.startswith('!상태'):
+    if message.content.startswith('!상태 '):
         text = message.content
         rpl = text.replace("!상태", "")
         await client.change_presence(game=discord.Game(name=rpl))
@@ -84,7 +84,7 @@ async def on_message(message):
         await client.send_message(message.channel, embed=discord.Embed(title = mtl, colour = 0x2EFEF7))
 
 
-    if message.content.startswith('!바위'):
+    if(message.content == '!바위'):
         nsu = random.randrange(1,4)
         mtl = "가위바위보 결과"
         if(nsu == 1):
@@ -103,7 +103,7 @@ async def on_message(message):
         await client.send_message(message.channel, embed=discord.Embed(title = mtl, description = msg, colour = 0x2EFEF7))
 
 
-    if message.content.startswith('!가위'):
+    if(message.content == '!가위'):
         nsu = random.randrange(1,4)
         mtl = "가위바위보 결과"
         if(nsu == 1):
@@ -121,7 +121,7 @@ async def on_message(message):
         msg = msg.format(message)
         await client.send_message(message.channel, embed=discord.Embed(title = mtl, description = msg, colour = 0x2EFEF7))
 
-    if message.content.startswith('!보'):
+    if(message.content == "!보" || message.content == "!보자기"):
         nsu = random.randrange(1,4)
         mtl = "가위바위보 결과"
         if(nsu == 1):
@@ -171,7 +171,7 @@ async def on_message(message):
 
 @client.event
 async def on_ready():
-    await client.change_presence(game=discord.Game(name=""))
+    await client.change_presence(game=discord.Game(name="명령어는 \"!명령어\" 로 확인!ㅤㅤㅤㅤㅤㅤㅤ"))
     print('다음 계정으로 로그인됨:')
     print(client.user.name)
     print(client.user.id)
