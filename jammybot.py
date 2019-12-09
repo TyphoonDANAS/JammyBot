@@ -65,7 +65,7 @@ async def on_message(message):
         msg = '안녕하세요, {0.author.mention} 님'.format(message)
         await client.send_message(message.channel, msg)
     
-    if message.content.startswith('!버전'):
+    if(message.content == '!버전'):
         version = os.environ["VERSION"]
         msg = '재미봇 버전: ' + version
         msg = msg.format(message)
